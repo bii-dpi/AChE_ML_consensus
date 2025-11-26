@@ -26,7 +26,7 @@ After installing the conda environment (`conda env create -f environment.yml`), 
 
 ### More on modifying the ML consensus
 
-The following is the basic workflow of extending our work. While swapping out the Random Forest regressor for a different `scikit-learn` model (for example) is trivial -- it will require only a modification to `scripts/get_ML_consensus.py` -- we expect the more likely intent will be to alter the ML consensus method's input featurization. The below is a sketch of how to do so:
+The following is the basic workflow of extending our work. While swapping out the Random Forest regressor for a different `scikit-learn` model (for example) is trivial -- it will require only a modification to `scripts/get_ML_consensus.py`'s model and hyperparameter grid specification -- we expect the more likely intent will be to alter the ML consensus method's input featurization. The below is a sketch of how to do so:
 
 1. Produce new `pickle` files in the same tripartite-pair format as the existing ones.
 2. Currently, each column of `X_*` corresponds to `PDB_IDS` as defined within `toolkit/config.py`. This helps `toolkit/data.py` identify how to subset `X_*` in the case not all structures are required as input. Alternative featurizations that no longer follow this logic (say, if you decide to use ligand physicochemical features) will need to adjust `get_split_input_data()` within `toolkit/data.py`. Multiple different sets of featurizations, which we currently define by `SCORE_TYPE` within `toolkit/config.py`, can already be handled.
@@ -45,5 +45,6 @@ _citation to be added after publishing_
 ### Contact
 
 Please contact hfan2006 (at) gmail.com with questions or concerns.
+
 
 
